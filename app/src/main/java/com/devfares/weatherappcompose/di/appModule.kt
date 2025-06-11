@@ -3,6 +3,7 @@ package com.devfares.weatherappcompose.di
 import com.devfares.weatherappcompose.data.repository.WeatherRepositoryImpl
 import com.devfares.weatherappcompose.data.util.WeatherTimeRangeProvider
 import com.devfares.weatherappcompose.domain.repository.WeatherRepository
+import com.devfares.weatherappcompose.presentation.screen.home.HomeViewModel
 import com.google.android.gms.location.LocationServices
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
@@ -27,7 +28,7 @@ val appModule = module {
             }
         }
     }
-
+    single { HomeViewModel(get()) }
     single { WeatherTimeRangeProvider() }
     single<WeatherRepository> { WeatherRepositoryImpl(get(),get()) }
 }

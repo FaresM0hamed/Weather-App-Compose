@@ -20,7 +20,7 @@ data class Weather(
     val windSpeed: Int,
     val surfacePressure: Int,
     val ultravioletIndex: Int,
-    val isDay: Boolean = true,
+    val isDay: Boolean,
     val dailyForecast: List<DailyForecast>,
     val hourlyForecast: List<HourlyForecast>
 )

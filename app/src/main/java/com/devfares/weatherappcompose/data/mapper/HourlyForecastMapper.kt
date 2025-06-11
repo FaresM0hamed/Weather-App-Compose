@@ -7,6 +7,7 @@ import kotlinx.datetime.LocalDateTime
 fun HourlyWeatherDTO.toHourlyForecast():List<HourlyForecast>{
     return time.mapIndexed{ index , time ->
         HourlyForecast(
+            isDay = isDay[index] == 1,
             time = LocalDateTime.parse(time),
             temperature = temperature[index],
             weatherCondition = mapWeatherCodeToCondition(weatherCode[index])

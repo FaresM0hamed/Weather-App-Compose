@@ -6,7 +6,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -15,12 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
 import com.devfares.weatherappcompose.data.repository.LocationRepositoryImpl
-import com.devfares.weatherappcompose.data.repository.WeatherRepositoryImpl
-import com.devfares.weatherappcompose.domain.entity.Location
+import com.devfares.weatherappcompose.domain.entity.UserLocation
 import com.devfares.weatherappcompose.domain.repository.WeatherRepository
 import com.devfares.weatherappcompose.ui.theme.WeatherAppComposeTheme
 import kotlinx.coroutines.launch
-import org.koin.android.ext.android.get
 import org.koin.android.ext.android.inject
 
 class MainActivity : ComponentActivity() {
@@ -34,7 +31,8 @@ class MainActivity : ComponentActivity() {
 
             LaunchedEffect(true) {
                 lifecycleScope.launch {
-                    Log.e("Ffff", "onCreate: ${weatherRepository.getWeatherByCoordinates(Location(31.455115,30.522053,""))}")
+                    Log.e("Ffff", "onCreate: ${weatherRepository.getWeatherByCoordinates(UserLocation(31.455115,30.522053,""))}")
+                    Log.e("Ffff", "onCreate: ${locationRepository.getCurrentLocation()}")
                 }
             }
 

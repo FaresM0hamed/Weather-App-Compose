@@ -18,7 +18,7 @@ import com.devfares.weatherappcompose.data.util.Constants.PARAM_TIMEZONE
 import com.devfares.weatherappcompose.data.util.Constants.PARAM_TIMEZONE_VALUE
 import com.devfares.weatherappcompose.data.util.Constants.WEATHER_API_URL
 import com.devfares.weatherappcompose.data.util.WeatherTimeRangeProvider
-import com.devfares.weatherappcompose.domain.entity.Location
+import com.devfares.weatherappcompose.domain.entity.UserLocation
 import com.devfares.weatherappcompose.domain.entity.Weather
 import com.devfares.weatherappcompose.domain.repository.WeatherRepository
 import io.ktor.client.HttpClient
@@ -31,19 +31,19 @@ class WeatherRepositoryImpl(
     private val timeRangeCalculator: WeatherTimeRangeProvider
 ) : WeatherRepository {
 
-    override suspend fun getWeatherByCoordinates(location: Location): Weather {
+    override suspend fun getWeatherByCoordinates(userLocation: UserLocation): Weather {
         val timeRange = timeRangeCalculator.calculateRange()
-        val weatherResponseDTO: WeatherResponseDTO = fetchWeatherData(location, timeRange)
-        return weatherResponseDTO.toWeather(location.cityName)
+        val weatherResponseDTO: WeatherResponseDTO = fetchWeatherData(userLocation, timeRange)
+        return weatherResponseDTO.toWeather(userLocation.cityName)
     }
 
     private suspend fun fetchWeatherData(
-        location: Location,
+        userLocation: UserLocation,
         timeRange: WeatherTimeRangeProvider.TimeRange
     ): WeatherResponseDTO {
         return httpClient.get(WEATHER_API_URL) {
-            parameter(PARAM_LATITUDE, location.latitude)
-            parameter(PARAM_LONGITUDE, location.longitude)
+            parameter(PARAM_LATITUDE, userLocation.latitude)
+            parameter(PARAM_LONGITUDE, userLocation.longitude)
             parameter(PARAM_CURRENT, CURRENT_WEATHER_PARAMS)
             parameter(PARAM_HOURLY, HOURLY_WEATHER_PARAMS)
             parameter(PARAM_DAILY, DAILY_WEATHER_PARAMS)

@@ -3,7 +3,7 @@ package com.devfares.weatherappcompose.data.util
 import com.devfares.weatherappcompose.data.util.Constants.FORECAST_NEXT_7_DAYS
 import kotlinx.datetime.*
 
-class WeatherTimeRangeProvider() {
+class WeatherTimeRangeProvider {
     fun calculateRange(
         timeZone: TimeZone = TimeZone.currentSystemDefault(),
         forecastDays: Int = FORECAST_NEXT_7_DAYS

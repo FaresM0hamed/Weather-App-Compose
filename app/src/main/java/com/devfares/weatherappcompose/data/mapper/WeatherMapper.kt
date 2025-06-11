@@ -17,6 +17,7 @@ fun WeatherResponseDTO.toWeather(cityName:String): Weather {
         surfacePressure = currentWeather.surfacePressure.toInt(),
         ultravioletIndex = currentWeather.ultravioletIndex.toInt(),
         dailyForecast = dailyForecast.toDailyForecast(),
-        hourlyForecast = hourlyForecast.toHourlyForecast()
+        hourlyForecast = hourlyForecast.toHourlyForecast(),
+        isDay = currentWeather.isDay == 1
     )
 }
