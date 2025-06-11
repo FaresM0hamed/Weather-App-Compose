@@ -1,6 +1,5 @@
 package com.devfares.weatherappcompose.presentation.component.text
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
@@ -17,9 +16,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.devfares.weatherappcompose.R
-import com.devfares.weatherappcompose.ui.theme.AppColorScheme
-import com.devfares.weatherappcompose.ui.theme.AppColors
-import com.devfares.weatherappcompose.ui.theme.MainFont
+import com.devfares.weatherappcompose.presentation.theme.AppColors
+import com.devfares.weatherappcompose.presentation.theme.MainFont
 
 @Composable
 fun MinAndMaxTemperature(

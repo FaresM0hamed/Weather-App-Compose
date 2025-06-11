@@ -13,8 +13,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.devfares.weatherappcompose.R
-import com.devfares.weatherappcompose.ui.theme.AppColors
-import com.devfares.weatherappcompose.ui.theme.MainFont
+import com.devfares.weatherappcompose.presentation.theme.AppColors
+import com.devfares.weatherappcompose.presentation.theme.MainFont
 
 @Composable
 fun CityName(name: String ,
@@ -36,9 +36,7 @@ fun CityName(name: String ,
             letterSpacing = 0.25.sp,
             lineHeight = 20.sp,
         )
-
     }
-
 }
 
 @Preview

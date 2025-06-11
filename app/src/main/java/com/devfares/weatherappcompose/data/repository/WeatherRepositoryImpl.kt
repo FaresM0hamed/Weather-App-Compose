@@ -28,7 +28,8 @@ import io.ktor.client.request.parameter
 
 class WeatherRepositoryImpl(
     private val httpClient: HttpClient,
-    private val timeRangeCalculator: WeatherTimeRangeProvider
+    private val timeRangeCalculator: WeatherTimeRangeProvider,
+    private val weatherApiUrl: String
 ) : WeatherRepository {
 
     override suspend fun getWeatherByCoordinates(userLocation: UserLocation): Weather {
@@ -41,7 +42,7 @@ class WeatherRepositoryImpl(
         userLocation: UserLocation,
         timeRange: WeatherTimeRangeProvider.TimeRange
     ): WeatherResponseDTO {
-        return httpClient.get(WEATHER_API_URL) {
+        return httpClient.get(weatherApiUrl) {
             parameter(PARAM_LATITUDE, userLocation.latitude)
             parameter(PARAM_LONGITUDE, userLocation.longitude)
             parameter(PARAM_CURRENT, CURRENT_WEATHER_PARAMS)

@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -26,11 +27,20 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.devfares.weatherappcompose.R
-import com.devfares.weatherappcompose.ui.theme.AppColors
-import com.devfares.weatherappcompose.ui.theme.MainFont
+import com.devfares.weatherappcompose.domain.entity.enums.WeatherCondition
+import com.devfares.weatherappcompose.presentation.component.image.TemperatureIcon
+import com.devfares.weatherappcompose.presentation.mapper.toLocalizedStringRes
+import com.devfares.weatherappcompose.presentation.theme.AppColors
+import com.devfares.weatherappcompose.presentation.theme.MainFont
 
 @Composable
-fun HourlyWeatherItem(modifier: Modifier = Modifier) {
+fun HourlyWeatherItem(
+    modifier: Modifier = Modifier,
+    time: String,
+    temperature: String,
+    isDay: Boolean ,
+    weatherCondition: WeatherCondition
+) {
     Box(
         modifier = modifier
 
@@ -49,7 +59,7 @@ fun HourlyWeatherItem(modifier: Modifier = Modifier) {
                 modifier = Modifier.fillMaxSize()
             ) {
                 Text(
-                    text = "25°C",
+                    text = temperature,
                     color = AppColors.headersColor,
                     fontSize = 16.sp,
                     fontFamily = MainFont,
@@ -60,7 +70,7 @@ fun HourlyWeatherItem(modifier: Modifier = Modifier) {
                 )
 
                 Text(
-                    text = "11:00",
+                    text = time,
                     color = AppColors.bodyColor,
                     fontSize = 16.sp,
                     fontFamily = MainFont,
@@ -71,16 +81,14 @@ fun HourlyWeatherItem(modifier: Modifier = Modifier) {
                 )
             }
 
-
         }
-        Image(
-            painter = painterResource(R.drawable.light_clear_sky),
-            contentDescription = null,
+        TemperatureIcon(
+            size = 58.dp,
+            weatherCondition = weatherCondition,
+            isDay = isDay,
             modifier = Modifier
-                .height(58.dp)
                 .align(Alignment.TopCenter)
-                ,
-            contentScale = ContentScale.FillHeight
+                .offset(y= (-7).dp)
         )
     }
 }
@@ -88,5 +96,10 @@ fun HourlyWeatherItem(modifier: Modifier = Modifier) {
 @Preview
 @Composable
 fun HourlyWeatherItemPreview() {
-    HourlyWeatherItem()
+    HourlyWeatherItem(
+        time = "12:00",
+        temperature = "25°C",
+        isDay = true,
+        weatherCondition = WeatherCondition.CLEAR
+    )
 }

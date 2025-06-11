@@ -1,4 +1,4 @@
-package com.devfares.weatherappcompose.ui.theme
+package com.devfares.weatherappcompose.presentation.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -12,7 +12,6 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.SweepGradient
 import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
@@ -35,24 +34,24 @@ private val LightColorScheme = lightColorScheme(
 
 @Composable
 fun WeatherAppComposeTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    isDay: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true, content: @Composable () -> Unit
 ) {
     val colorScheme = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
             val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+            if (isDay) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
 
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+        isDay -> LightColorScheme
+        else -> DarkColorScheme
     }
 
-    val customColors = if (darkTheme) DarkColors else LightColors
+    val customColors = if (isDay) LightColors else DarkColors
     CompositionLocalProvider(
         LocalAppColors provides customColors,
-        LocalThemeInfo provides ThemeInfo(isDay = !darkTheme)
+        LocalThemeInfo provides ThemeInfo(isDay = isDay)
     ) {
         MaterialTheme(
             colorScheme = colorScheme, typography = Typography, content = content
@@ -62,7 +61,6 @@ fun WeatherAppComposeTheme(
 
 val AppColors: AppColorScheme
     @Composable get() = LocalAppColors.current
-
 
 
 @Immutable
@@ -84,8 +82,10 @@ data class AppColorScheme(
     val cityNameColor: Color,
     val startGradient: Color,
     val endGradient: Color,
-    val dividerColor: Color
-)
+    val dividerColor: Color,
+   val blurColor : Color,
+
+    )
 
 private val LightColors = AppColorScheme(
     mainColor = Color(0xB3FFFFFF),
@@ -98,7 +98,8 @@ private val LightColors = AppColorScheme(
     cityNameColor = Color(0xFF323232),
     startGradient = Color(0xFF87CEFA),
     endGradient = Color(0xFFFFFFFF),
-    dividerColor = Color(0x3D060414)
+    dividerColor = Color(0x3D060414),
+    blurColor = Color(0xFF00619D)
 )
 
 private val DarkColors = AppColorScheme(
@@ -112,5 +113,6 @@ private val DarkColors = AppColorScheme(
     cityNameColor = Color(0xFFFFFFFF),
     startGradient = Color(0xFF060414),
     endGradient = Color(0xFF0D0C19),
-    dividerColor = Color(0x3DFFFFFF)
+    dividerColor = Color(0x3DFFFFFF),
+    blurColor = Color(0xFFC0B7FF)
 )

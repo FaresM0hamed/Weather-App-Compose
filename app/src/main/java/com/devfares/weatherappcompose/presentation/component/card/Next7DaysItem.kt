@@ -1,42 +1,36 @@
 package com.devfares.weatherappcompose.presentation.component.card
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.devfares.weatherappcompose.R
+import com.devfares.weatherappcompose.domain.entity.enums.WeatherCondition
+import com.devfares.weatherappcompose.presentation.component.image.TemperatureIcon
 import com.devfares.weatherappcompose.presentation.component.text.MinAndMaxTemperature
-import com.devfares.weatherappcompose.ui.theme.AppColors
-import com.devfares.weatherappcompose.ui.theme.MainFont
+import com.devfares.weatherappcompose.presentation.theme.AppColors
+import com.devfares.weatherappcompose.presentation.theme.MainFont
 
 @Composable
 fun Next7DaysItem(
     minTemperature: String,
     maxTemperature: String,
+    dayName: String,
+    weatherCondition:WeatherCondition,
     modifier: Modifier = Modifier
 ) {
-    Row(
-        horizontalArrangement = Arrangement.SpaceAround,
-        verticalAlignment = Alignment.CenterVertically,
+    Box(
         modifier = modifier.fillMaxWidth()
     ) {
         Text(
-            text = "Monday",
+            text = dayName,
             color = AppColors.bodyColor,
             fontSize = 16.sp,
             fontFamily = MainFont,
@@ -44,16 +38,18 @@ fun Next7DaysItem(
             textAlign = TextAlign.Start,
             letterSpacing = 0.25.sp,
             modifier = Modifier
-                .weight(1f)
                 .padding(end = 10.dp)
+                .align(Alignment.CenterStart)
         )
-        Image(
-            painter = painterResource(id = R.drawable.light_clear_sky),
-            contentDescription = null,
+
+
+        TemperatureIcon(
+            size = 32.dp,
+            weatherCondition = weatherCondition,
+            isDay = true,
             modifier = Modifier
-                .height(32.dp)
-                .weight(1f)
-                .padding(end = 10.dp)
+                .align(Alignment.TopCenter)
+
         )
 
         MinAndMaxTemperature(
@@ -62,8 +58,8 @@ fun Next7DaysItem(
             dividerColor = AppColors.dividerColor,
             minTemperature = minTemperature,
             maxTemperature = maxTemperature,
-
-            )
+            modifier = Modifier.align(Alignment.CenterEnd)
+        )
     }
 }
 
@@ -73,5 +69,7 @@ fun Next7DaysItemPreview() {
     Next7DaysItem(
         minTemperature = "15°",
         maxTemperature = "25°",
+        dayName = "Monday",
+        weatherCondition = WeatherCondition.CLEAR,
     )
 }

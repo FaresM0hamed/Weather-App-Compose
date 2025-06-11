@@ -1,16 +1,12 @@
 package com.devfares.weatherappcompose.presentation.component.text
 
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.devfares.weatherappcompose.ui.theme.AppColors
-import com.devfares.weatherappcompose.ui.theme.MainFont
+import com.devfares.weatherappcompose.presentation.theme.AppColors
+import com.devfares.weatherappcompose.presentation.theme.MainFont
 
 @Composable
 fun MainTitle(

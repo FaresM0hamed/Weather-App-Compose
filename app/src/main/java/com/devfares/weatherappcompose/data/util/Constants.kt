@@ -19,9 +19,10 @@ object Constants {
         "temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m," +
                 "precipitation,surface_pressure,uv_index,weather_code,rain,is_day,precipitation_probability"
 
-    const val HOURLY_WEATHER_PARAMS = "temperature_2m,weathercode"
+    const val HOURLY_WEATHER_PARAMS = "temperature_2m,weathercode,is_day"
 
     const val DAILY_WEATHER_PARAMS = "weather_code,temperature_2m_max,temperature_2m_min"
 
     const val FORECAST_NEXT_7_DAYS = 7
+    const val TODAY = 1
 }

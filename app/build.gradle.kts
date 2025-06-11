@@ -84,8 +84,9 @@ dependencies {
     // Koin
     implementation("io.insert-koin:koin-android:4.0.3")
     implementation("io.insert-koin:koin-androidx-compose:4.0.3")
-
-
-
+    // Splash Screen
+    implementation("androidx.core:core-splashscreen:1.0.0")
+    //permission
+    implementation ("com.google.accompanist:accompanist-permissions:0.32.0")
 
 }

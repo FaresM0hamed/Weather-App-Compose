@@ -1,4 +1,4 @@
-package com.devfares.weatherappcompose.ui.theme
+package com.devfares.weatherappcompose.presentation.theme
 
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
